@@ -15,6 +15,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (password_verify($password, $row['password'])) {
                 $_SESSION["user_id"] = $row['user_id'];
                 $_SESSION["role"] = $row['role'];
+
+                logAction($conn, $_SESSION['user_id'], "Logged in");
+                
                 header("Location: dashboard.php");
                 exit();
             } else {

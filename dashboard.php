@@ -10,6 +10,10 @@ if (!isset($_SESSION["user_id"])) {
 $user_id = $_SESSION["user_id"];
 $result = $conn->query("SELECT name FROM Users WHERE user_id = $user_id");
 $user = $result->fetch_assoc();
+
+$result = $conn->query("SELECT name, profile_picture FROM Users WHERE user_id = $user_id");
+$user = $result->fetch_assoc();
+echo "<img src='uploads/" . $user['profile_picture'] . "' width='100' height='100'><br>";
 ?>
 
 <!DOCTYPE html>
@@ -24,6 +28,7 @@ $user = $result->fetch_assoc();
 
         <a href="library.php">Library</a> |
         <a href="changepassword.php">Change Password</a> |
+        <a href="update_profile.php">Change Profile</a> |
         <a href="logout.php">Logout</a>
     </nav>
     <div style="background-color:#e0e0e0; padding:10px;">
